@@ -15,7 +15,11 @@ public class Concatenation {
        for (char c = 'A'; c <= 'Z'; c++) {
         System.out.print(c + " ");
        }
-}
+
+       for(int i : str1.length()){
+        System.out.print(str1.charAt(ch) + " ");
+       }
+    }
 }
 
 
