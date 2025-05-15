@@ -18,20 +18,20 @@ import java.util.*;
 public class Input {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            // System.out.println("Enter your name: ");
-            // String input = sc.nextLine();
-            // System.out.println("Hello, " + input + "!\nHow are you?");
+            System.out.println("Enter your name: ");
+            String input = sc.nextLine();
+            System.out.println("Hello, " + input + "!\nHow are you?");
 
-            // System.out.println("Enter an integer: ");
-            // int number = sc.nextInt();
-            // System.out.println("You entered: " + number);
+            System.out.println("Enter an integer: ");
+            int number = sc.nextInt();
+            System.out.println("You entered: " + number);
 
-            // System.out.println("Enter a float: ");
-            // float floatNumber = sc.nextFloat();
-            // System.out.println("You entered: " + floatNumber);
+            System.out.println("Enter a float: ");
+            float floatNumber = sc.nextFloat();
+            System.out.println("You entered: " + floatNumber);
 
-            // int c = number + (int) floatNumber;
-            // System.out.println("Sum of Both = " + c);
+            int c = number + (int) floatNumber;
+            System.out.println("Sum of Both = " + c);
 
 
             float rad = sc.nextFloat();

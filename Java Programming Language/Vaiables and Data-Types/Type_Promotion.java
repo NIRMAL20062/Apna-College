@@ -38,9 +38,7 @@ public class Type_Promotion {
 
         // boring student fall in love daily 
         // this is the acronym of the type conversion in Java
-
-
-
+        // byte < short < int < long < float < double
     }
 }
 
