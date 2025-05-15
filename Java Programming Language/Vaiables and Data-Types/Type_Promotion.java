@@ -34,7 +34,10 @@ public class Type_Promotion {
 
         byte i = 5;
         byte j=(byte)(i*2);   //ye loh pure ecpression ko byte me convert krne k badd kamm krege 
-        System.out.println(j); 
+        System.out.println(j);
+
+        // boring student fall in love daily 
+        // this is the acronym of the type conversion in Java
 
 
 
