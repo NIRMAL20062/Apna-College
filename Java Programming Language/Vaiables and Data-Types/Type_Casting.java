@@ -6,7 +6,7 @@ public class Type_Casting {
         float f = (float) i; // Explicit casting from double to float
         System.out.println("Explicit Casting: " + d);
         System.out.println("Explicit Casting: " + f);
-        
+
         char ch='d';
         int a=(int)ch;
         char b= 'e';
