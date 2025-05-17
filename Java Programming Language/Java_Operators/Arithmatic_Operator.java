@@ -28,3 +28,29 @@ public class Arithmatic_Operator {
 //     a++   ---  Increment   jisme ek variable usko Unary operators
 //     --a   ---  Decrement
 
+/* 
+Version 1: int b = a++; (Post-increment)
+Initial value: a = 10
+
+b = a++ means:
+
+First, assign a's current value (10) to b
+Then, increment a (so now a becomes 11) 
+
+b = 10
+a = 11
+*/
+
+/*
+✅ Version 2: int b = ++a; (Pre-increment)
+Initial value: a = 10
+
+b = ++a means:
+
+First, increment a (so now a becomes 11)
+Then, assign a's value (11) to b
+
+Final values:
+b = 11
+a = 11
+*/

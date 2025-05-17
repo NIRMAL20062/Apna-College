@@ -7,7 +7,9 @@ public class Assignment {
 
 
         // Q1. Average of 3 numbers
-        /* int num1 = scanner.nextInt();
+        /* 
+        System.out.println("Enter 3 numbers");
+        int num1 = scanner.nextInt();
         int num2 = scanner.nextInt();
         int num3 = scanner.nextInt();
         int avg =(num1 + num2 + num3) / 3;
@@ -15,6 +17,7 @@ public class Assignment {
         scanner.close(); */
 
         // Q2. Area of a square
+        /* System.out.println("Enter side of the square");
         /* int side = scanner.nextInt();
         int area = side * side;
         System.out.println("Area of the square is: " + area); */
@@ -29,7 +32,5 @@ public class Assignment {
         int eraser = scanner.nextInt();
         double total = pencil + pen + eraser+ (pencil + pen + eraser)*0.18;
         System.out.println("Total bill is: " + total); */
-
-
     }
 }
