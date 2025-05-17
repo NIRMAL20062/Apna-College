@@ -21,37 +21,29 @@ public class Loops {
             System.out.println();
         }
 
+        String[] names = {"Alice", "Bob", "Charlie"};
+        for (String name : names) {
+            System.out.println(name);
+        }
 
+        // Using a for-each loop to iterate over an array
         int[] numbers = {10, 20, 30, 40, 50};
         for (int num : numbers) {
             System.out.println(num);
         }
 
-
-
         for (int i = 1; i <= 4; i++) {
             System.out.println("*".repeat(4) + " "); // Repeats "*" 4 times
         }
 
-
-        List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-        for (String name : names) {
+        List<String> namesx = Arrays.asList("Alice", "Bob", "Charlie");
+        for (String name : namesx) {
             System.out.println(name);
         }
 
+        for (;;) {
+            System.out.println("Infinite loop");
+        }
 
     }
 }
-
-
-
-
-
-
-/*
-
-for (initialization; condition; update) {
-    // Code to be executed
-}
-
- */
