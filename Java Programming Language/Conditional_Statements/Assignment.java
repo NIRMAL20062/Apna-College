@@ -4,7 +4,7 @@ public class Assignment {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
+
         // Q1: Check if the number is positive or negative
         System.out.print("Enter a number: ");
         int num = sc.nextInt();
@@ -27,8 +27,6 @@ public class Assignment {
         } else {
             System.out.println("You don't have a fever.");
         }
-
-
 
         {int a=63,b=36;boolean x= (a<b)?true:false;int y= (a>b)?a:b;}
 
