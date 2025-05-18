@@ -15,7 +15,6 @@ public class Pattern {
         System.out.println();
         } */
 
-
         // Inverted-STAR
         /* System.out.println("Enter a number : ");
         int n = sc.nextInt();
@@ -26,8 +25,9 @@ public class Pattern {
         System.out.println();
         } */
 
+
         // PYRAMID    
-        /* System.out.println("Enter a number : ");
+        System.out.println("Enter a number : ");
         int n = sc.nextInt();
         for(int i=0; i<n; i++){
             for(int j=0; j<n-i-1; j++){
@@ -38,7 +38,7 @@ public class Pattern {
                     }
                     System.out.println();
                     }
-        sc.close(); */
+        sc.close();
 
         // Half Pyramid
         /* System.out.println("Enter a number : ");

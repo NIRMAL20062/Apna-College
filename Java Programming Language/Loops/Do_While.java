@@ -4,7 +4,6 @@ public class Do_While {
         do {
             System.out.println(i);
             i++;
-
     }while(i<10);
-}
+  }
 }

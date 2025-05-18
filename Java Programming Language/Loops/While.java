@@ -21,21 +21,22 @@ public class While {
         Scanner sc = new Scanner(System.in);
         int i = 0;
         int counter = 0;
-        
+
         while (i < 5) {
             System.out.print(i + " "); // Print on the same line
-            i = ++i; 
+            i = ++i; // Increment i
+            // i = i++; // This will not work as expected
             counter++;
         }
-        
+
         System.out.println("\nCount is: " + counter); // Move to the next line
-        
+
         System.out.print("Enter a number: ");
         int x = sc.nextInt();
-        
+
         // Call the function and print the result
         System.out.println("Sum of first " + x + " natural numbers: " + sum_of_natural(x));
-        
+
         sc.close(); // Close Scanner to prevent memory leaks
     }
 
@@ -49,8 +50,4 @@ public class While {
         }
         return sum;
     }
-
-
-
-    
 }

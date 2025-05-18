@@ -15,17 +15,13 @@
 }
 
  */
-
-
-
- public class Reversing_Digit {
+public class Reversing_Digit {
     public static void main(String[] args) {
         int num = 12345;
         while (num > 0) {
             int remainder = num % 10;
-            System.out.print(remainder+"");
+            System.out.print(remainder);
             num = num / 10;
-        
         }
 }
 }
