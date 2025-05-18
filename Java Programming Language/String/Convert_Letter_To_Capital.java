@@ -13,4 +13,31 @@ public class Convert_Letter_To_Capital {
         }
         System.out.println(sb.toString());
     }
+
+
+    // ERROR AAYEGA BABE
+    /* public static void Convert_Letter_first(String str){
+
+        String ResultString = "";
+        for (int i = 0 ; i <= str.length();i++ ){
+            if(i ==0 || str.charAt(i-1) == ' '){
+                ResultString.append(Character.toUpperCase(str.charAt(i)));
+            }else{
+                ResultString.append(str.charAt(i));
+            }
+        }
+        System.out.println(ResultString);
+    } */
 }
+
+
+
+// NOTE: 
+
+// THIS WILL WORK
+// StringBuilder ResultString = new StringBuilder();
+// ResultString.append("Hello");
+
+// BUT THIS WON'T
+// String str = ""
+// str.append()
