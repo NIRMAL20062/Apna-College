@@ -3,6 +3,9 @@ public class String_Compression {
         String str = "aaabbccddeee";
         String compressed = compressString(str);
         System.out.println(compressed); // Output: a3b2c2d2e3
+
+        String compressedString = get_compressed_string();
+        System.out.println(compressedString); // Output: a3b2c2d2e3
     }
     public static String compressString(String str) {
         StringBuilder compressed = new StringBuilder();
@@ -40,3 +43,5 @@ public class String_Compression {
         return newstring;
     }
 }
+
+// ! NOTE: everything is working fine
