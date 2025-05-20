@@ -10,6 +10,7 @@ public class Get_Bit {
         int bit = getBit(num, pos);
         System.out.println("The bit at position " + pos + " is " + bit);
         sc.close();
+        System.out.println("Pinky");
     }
 
     public static int getBit(int num, int pos) {
@@ -19,8 +20,14 @@ public class Get_Bit {
             return 0; // If the bit is 0, return 0
         }
     }
-}
+    public static int setBit(int num, int pos) {
+        return num | (1<<pos); // OR with 1 shifted left by pos
+    }
 
+    public static int clearBit(int num, int pos) {
+        return num & ~(1<<pos); // AND with NOT of 1 shifted left by pos
+    }
+}
 // ! Working of above code
 // if num = 5 (binary 101) and pos = 1, then (num & (1<<pos)) = 00101 & 00001 = 00001 = 1
 // So, the bit at position 1 is 1.
