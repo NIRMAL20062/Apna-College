@@ -51,6 +51,14 @@ public class Get_Bit {
         int i = 3; // Number of bits to clear
         return num & (~0 << i); // AND with NOT of 0 shifted left by i
     }
+
+
+    public static int clear_bit_in_range(int num, int i, int j) {
+        // Clear bits from i to j (inclusive)
+        int a = (~0) << (j + 1); // Create mask for bits before j
+        int b = (1 << i) - 1; // Create mask for bits after i
+        return num & (a | b); // AND with the masks
+    }
 }
 // ! Working of above code
 // if num = 5 (binary 101) and pos = 1, then (num & (1<<pos)) = 00101 & 00001 = 00001 = 1
