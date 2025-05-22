@@ -50,3 +50,8 @@ public class Count_number_of_set_bits {
 // here n & 1 = 1111 & 1 = 1, so the last bit is set, so count = 1
 // here n = 1111 >> 1 = 1110, so the next bit is checked, and n = 1110, and so on.
 
+// ! n & 1
+// = 101
+// & 001
+// = 001
+//   001  → which is 1
