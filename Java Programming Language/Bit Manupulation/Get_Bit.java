@@ -52,6 +52,11 @@ public class Get_Bit {
         return num & (~0 << i); // AND with NOT of 0 shifted left by i
     }
 
+    public static int Set_Last_I_Bit(int num, int i) {
+        // Set last i bits of a number
+        return num | ((1 << i) - 1); // OR with (1 shifted left by i) - 1
+    }
+
 
     public static int clear_bit_in_range(int num, int i, int j) {
         // Clear bits from i to j (inclusive)
@@ -59,7 +64,15 @@ public class Get_Bit {
         int b = (1 << i) - 1; // Create mask for bits after i
         return num & (a | b); // AND with the masks
     }
+
+    public static int set_bit_in_range(int num, int i, int j) {
+        // Set bits from i to j (inclusive)
+        int a = (~0) << (j + 1); // Create mask for bits before j
+        int b = (1 << i) - 1; // Create mask for bits after i
+        return num | (a | b); // OR with the masks
+    }
+
+
 }
 // ! Working of above code
-// if num = 5 (binary 101) and pos = 1, then (num & (1<<pos)) = 00101 & 00001 = 00001 = 1
-// So, the bit at position 1 is 1.
+// todo if num = 5 (binary 101) and pos = 1, then (num & (1<<pos)) = 00101 & 00001 = 00001 = 1
