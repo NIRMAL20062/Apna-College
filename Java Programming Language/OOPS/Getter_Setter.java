@@ -41,3 +41,5 @@ class Employee {
         this.salary = salary;
     }
 }
+
+// ! this refer to the current object, this is used to access the instance variables of the class.
