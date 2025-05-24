@@ -15,7 +15,7 @@ public class Constructors {
     }
 }
 
-
+//P Class name and constructor name must be same.
 class Student{
     String name;
     int roll;
@@ -46,7 +46,7 @@ class Student{
 
 
 
-// r >>>NOTE<<< : Costructor called by maching its paramerters is called constrctor overloading--[-polymorphism-]--
+// r >>>NOTE<<< : Costructor called by maching its paramerters is called constrctor overloading--[-polymorphism-]--or method overloading.
 
 
 
@@ -63,7 +63,13 @@ class Student{
 // i Constructors can also be used to perform any setup or initialization tasks required for the object.
 // o     Constructors can be used to enforce certain conditions when creating an object, such as ensuring that a balance is positive.   
 //m  Constructors can be used to create immutable objects by not providing setters for the fields.
-// ! Constructors can be used to create default values for object fields if no arguments are provided.  
-// ? Constructors can be used to create objects with different states by providing different arguments.
-// ! Constructors can be used to create objects with different behaviors by providing different arguments.  
-// // Hello babe
+
+
+/* 
+// r 🧩 Key Features of Constructors:
+Feature	Description
+Name	Must have the same name as the class
+No Return Type	Doesn’t have a return type — not even void
+Auto-called	Automatically called when you create an object with new
+Can Be Overloaded	You can create multiple constructors with different parameter lists
+ */

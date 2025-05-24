@@ -22,3 +22,24 @@ public class Inheritance {
 
 
 // r : Nhi likhoge toh bhi chalega quki , constructor already directory me hai usko java use krega
+
+
+/* 
+//p | Inheritable? | What                                   | Notes                             |
+| --------------| ------------------------------------------| --------------------------------- |
+| ✅            | `public` & `protected` methods/variables | Fully accessible                  |
+| ❌            | `private` members                        | Not directly accessible           |
+| ❌            | Constructors                             | But can be called using `super()` |
+| ✅            | `final` variables                        | Can be accessed but not modified  |
+| ✅            | `static` methods/variables               | Can be accessed without an object  |
+| ✅            | `abstract` methods/classes               | Cannot be instantiated            | */
+
+
+/*
+-//p| Advantage        | Why It Matters                                    |
+| ---------------- | ------------------------------------------------- |
+| Code Reusability | No need to rewrite common code                    |
+| Organization     | Structure your code with logic (e.g. class trees) |
+| Scalability      | Easy to add new features                          |
+| Polymorphism     | Enables flexible and generic code                 |
+ */
