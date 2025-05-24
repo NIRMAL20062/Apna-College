@@ -1,5 +1,4 @@
 // File: BankApp.java
-
 public class Encapsulation {
     // Main method to test encapsulation
     public static void main(String[] args) {
@@ -60,7 +59,7 @@ public class Encapsulation {
         }
     }
 
-    
+
 }
 
 //! Encapsulation is a fundamental concept in OOP that restricts direct access to an object's data and methods.
@@ -72,3 +71,35 @@ public class Encapsulation {
 // The default access modifier allows access to the data from within the same package.
 // Encapsulation is a powerful concept that helps to maintain the integrity of the data and protect it from unauthorized access.
 //! It also promotes the use of object-oriented programming as it provides a better way to organize and manage the code.
+
+// r: This logic is broken and must be rewritten
+// o: Deprecated method — consider updating soon
+// y: Needs optimization, performance could lag
+// g: This part is stable and works flawlessly
+// b: Research required — unclear approach
+// i: Remember to validate user input here
+// v: Visionary idea — explore this direction further
+// w: General note — keep this in mind
+// c: Clean code practice — nicely done!
+// m: UI element for mood interactions goes here
+// p: Pink theme styling applied to buttons
+// l: Logging event for analytics tracking
+// s: Safe fallback if no data is returned
+// d: Default configuration settings initialized
+
+
+
+// r: Red
+// o: Orange
+// y: Yellow
+// g: Green
+// b: Blue
+// i: Indigo
+// v: Violet
+// w: White
+// c: Cyan
+// m: Magenta
+// p: Pink
+// l: Lime
+// s: Silver
+// d: Dark
