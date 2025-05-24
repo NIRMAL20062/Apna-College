@@ -8,6 +8,10 @@ public class Constructors {
         System.out.println("Student 1: " + student1.name + ", Roll: " + student1.roll);
         System.out.println("Student 2: " + student2.name + ", Roll: " + student2.roll);
         System.out.println("Student 3: " + student3.name + ", Roll: " + student3.roll);
+
+        // Creating a copy of student2 using the copy constructor
+        Student student4 = new Student(student2); // Calls copy constructor
+        System.out.println("Student 4 (copy of Student 2): " + student4.name + ", Roll: " + student4.roll);
     }
 }
 
@@ -28,13 +32,21 @@ class Student{
         roll = r;
         System.out.println("Parameterized Constructor Called");
     }
-    // Constructor with one parameter
+    // copy constructor
+    Student(Student s){
+        name = s.name;
+        roll = s.roll;
+        System.out.println("Copy Constructor Called");
+        this.name = s.name;
+        this.roll = s.roll;
+        System.out.println("Copy Constructor Called");
+    }
 }
 
 
 
 
-
+// r >>>NOTE<<< : Costructor called by maching its paramerters is called constrctor overloading--[-polymorphism-]--
 
 
 
@@ -50,7 +62,7 @@ class Student{
 // v Constructors can be used to set initial values for object fields.  
 // i Constructors can also be used to perform any setup or initialization tasks required for the object.
 // o     Constructors can be used to enforce certain conditions when creating an object, such as ensuring that a balance is positive.   
-//  Constructors can be used to create immutable objects by not providing setters for the fields.
+//m  Constructors can be used to create immutable objects by not providing setters for the fields.
 // ! Constructors can be used to create default values for object fields if no arguments are provided.  
 // ? Constructors can be used to create objects with different states by providing different arguments.
 // ! Constructors can be used to create objects with different behaviors by providing different arguments.  
