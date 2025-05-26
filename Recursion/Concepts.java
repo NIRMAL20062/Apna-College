@@ -280,27 +280,26 @@ public class Concepts{
         }
 
         // other approach for First Occurence
-        public static int FirstOccurence(int[] arr, int i) {
-            // base case
-            if (i >= arr.length) {
-                return -1; // not found
-            }
-            // recursive case
-            if (arr[i] == 0) {
-                return i; // found at index i
-            }
-            return FirstOccurence(arr, i + 1); // search in the rest of the array
+        public static int firstOccurrence(int[] arr, int i, int key) {
+        if (arr == null || i >= arr.length) {
+            return -1;
         }
+        if (arr[i] == key) {
+            return i;
+        }
+        return firstOccurrence(arr, i + 1, key);
+    }
 
         public static int LastOccurence(int[] arr, int n, int x) {
             // base case
             if (n <= 0) {
-                return -1; // not found
-            }
-            // recursive case
-            if (arr[n - 1] == x) {
-                return n - 1; // found at index n-1
-            }
-            return LastOccurence(arr, n - 1, x); // search in the rest of the array
+            return -1; // Base case: reached beginning without finding x
         }
+        if (arr[n - 1] == x) {
+        return n - 1; // Match found at current index
 }
+        return LastOccurence(arr, n - 1, x); // Recurse backwards
+
+}
+}
+
