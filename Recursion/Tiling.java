@@ -23,3 +23,14 @@ public class Tiling {
 // The recursive function countWays(n) calls itself with n-1 and n-2 as inputs, and adds the results together to get the total number of ways to tile the floor.
 
 // The function returns the total number of ways to tile the floor. 
+
+// detailed with recursive tree
+// countWays(n) = countWays(n-1) + countWays(n-2)
+// countWays(1) = 1
+// countWays(2) = 2
+// countWays(3) = countWays(2) + countWays(1) = 2 + 1 = 3
+// countWays(4) = countWays(3) + countWays(2) = 3 + 2 = 5
+// countWays(5) = countWays(4) + countWays(3) = 5 + 3 = 8
+// countWays(6) = countWays(5) + countWays(4) = 8 + 5 = 13
+// countWays(7) = countWays(6) + countWays(5) = 13 + 8 = 21
+// countWays(8) = countWays(7) + countWays(6) = 21 + 13 = 34
