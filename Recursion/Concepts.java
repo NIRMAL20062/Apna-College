@@ -297,9 +297,23 @@ public class Concepts{
         }
         if (arr[n - 1] == x) {
         return n - 1; // Match found at current index
-}
+     }
         return LastOccurence(arr, n - 1, x); // Recurse backwards
 
 }
+        public static int optimizedCodeForPowerOfANumber(int num, int x) {
+            if (x == 0) {
+                return 1;
+            }
+
+            int halfPower = optimizedCodeForPowerOfANumber(num, x / 2);
+
+            if (x % 2 == 0) {
+                return halfPower * halfPower;
+            } else {
+                return num * halfPower * halfPower;
+            }
+        }
+
 }
 
