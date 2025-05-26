@@ -180,4 +180,127 @@ public class Concepts{
         return findIndex(arr, n - 1, x); // search in the rest of the array
         }
 
+        public static int sumOfNaturalNumbers(int n) {
+            // base case
+            if (n <= 0) {
+                return 0; // no natural numbers to sum
+            }
+            // recursive case
+            return n + sumOfNaturalNumbers(n - 1);
+        }
+        public static int sumOfOddNumbers(int n) {
+            // base case
+            if (n <= 0) {
+                return 0; // no odd numbers to sum
+            }
+            // recursive case
+            if (n % 2 == 0) {
+                return sumOfOddNumbers(n - 1); // skip even numbers
+            }
+            return n + sumOfOddNumbers(n - 1); // add odd number
+        }
+        public static int sumOfEvenNumbers(int n) {
+            // base case
+            if (n <= 0) {
+                return 0; // no even numbers to sum
+            }
+            // recursive case
+            if (n % 2 == 1) {
+                return sumOfEvenNumbers(n - 1); // skip odd numbers
+            }
+            return n + sumOfEvenNumbers(n - 1); // add even number
+        }
+        public static int sumOfMultiples(int n, int m) {
+            // base case
+            if (n <= 0) {
+                return 0; // no multiples to sum
+            }
+            // recursive case
+            return n * m + sumOfMultiples(n - 1, m);
+        }
+        public static boolean isPowerOfTwo(int n) {
+            // base case
+            if (n <= 0) {
+                return false; // not a power of two
+            }
+            // base case for 1, which is 2^0
+            if (n == 1) {
+                return true; // 2^0 = 1
+            }
+            // recursive case
+            if (n % 2 != 0) {
+                return false; // not a power of two if odd
+            }
+            return isPowerOfTwo(n / 2); // divide by 2 and check again
+        }
+        public static boolean sortedArray(int[] arr, int n) {
+            // base case
+            if (n <= 1) {
+                return true; // an array with 0 or 1 element is sorted
+            }
+            // recursive case
+            if (arr[n - 1] < arr[n - 2]) {
+                return false; // not sorted if current element is less than previous
+            }
+            return sortedArray(arr, n - 1); //m check the rest of the array
+        }
+        public static boolean isSubset(int[] arr1, int n1, int[] arr2, int n2) {
+            // base case
+            if (n1 <= 0) {
+                return true; // an empty set is always a subset of any set
+            }
+            // recursive case
+            if (n2 <= 0) {
+                return false; // not a subset if the other set is empty
+            }
+            if (arr1[n1 - 1] == arr2[n2 - 1]) {
+                return isSubset(arr1, n1 - 1, arr2, n2 - 1); // check the rest of the sets
+            }
+            return isSubset(arr1, n1 - 1, arr2, n2) || isSubset(arr1, n1, arr2, n2 - 1); // check both subsets
+        }
+        public static int countSubset(int[] arr, int n) {
+            // base case
+            if (n <= 0) {
+                return 1; // an empty set has 1 subset
+            }
+            // recursive case
+            return countSubset(arr, n - 1) + countSubset(arr, n - 1); // count both subsets
+        }
+
+        public static int FirstOccurence(int[] arr, int n, int x) {
+            // base case
+            if (n <= 0) {
+                return -1; // not found
+            }
+            // recursive case
+            if (arr[n - 1] == x) {
+                return n - 1; // found at index n-1
+            }
+            return FirstOccurence(arr, n - 1, x); // search in the rest of the array
+        }
+
+        // other approach for First Occurence
+        public static int FirstOccurence(int[] arr, int i) {
+            // base case
+            if (i >= arr.length) {
+                return -1; // not found
+            }
+            // recursive case
+            if (arr[i] == 0) {
+                return i; // found at index i
+            }
+            return FirstOccurence(arr, i + 1); // search in the rest of the array
+        }
+
+        public static int LastOccurence(int[] arr, int n, int x) {
+            // base case
+            if (n <= 0) {
+                return -1; // not found
+            }
+            // recursive case
+            if (arr[n - 1] == x) {
+                return n - 1; // found at index n-1
+            }
+            return LastOccurence(arr, n - 1, x); // search in the rest of the array
+        }
 }
