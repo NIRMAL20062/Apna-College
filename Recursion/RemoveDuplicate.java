@@ -6,6 +6,24 @@ public class RemoveDuplicate {
         String result = removeDuplicates(input);
         System.out.println("Original String: " + input);
         System.out.println("String after removing duplicates: " + result);
+
+
+
+
+        // Input string
+        String input1 = "bananaa";
+
+        // Create a StringBuilder for the new string (no duplicates)
+        StringBuilder result1 = new StringBuilder("");
+
+        // Create a boolean map of size 26 for lowercase alphabets
+        boolean[] map = new boolean[26]; // all initialized to false by default
+
+        // Call the function starting from index 0
+        removeDuplicates(input1, 0, result1, map);
+
+
+
     }
         //P Answer by ChatGPT
     public static String removeDuplicates(String str) {
@@ -23,6 +41,32 @@ public class RemoveDuplicate {
             return remainingString; // skip the first character
         } else {
             return firstChar + remainingString; // include the first character
+        }
+    }
+
+            //Appna college answer
+    // Recursive method to remove duplicate characters from a string
+    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean[] map) {
+
+        // Base case: if we've reached the end of the string, print the result
+        if (idx == str.length()) {
+            System.out.println(newStr); // Output the string without duplicates
+            return; // End recursion
+        }
+
+        // Get the current character at the index
+        char currChar = str.charAt(idx);
+
+        // Check if the character is already marked as 'seen' in our map
+        if (map[currChar - 'a'] == true) {
+            // It's a duplicate → skip adding it and move to the next character
+            removeDuplicates(str, idx + 1, newStr, map);
+        } else {
+            // It's the first time we've seen this character
+            map[currChar - 'a'] = true; // Mark as seen
+
+            // Add the character to our result and recurse
+            removeDuplicates(str, idx + 1, newStr.append(currChar), map);
         }
     }
 }
