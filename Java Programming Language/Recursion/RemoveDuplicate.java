@@ -1,19 +1,16 @@
 public class RemoveDuplicate {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args){
+
         // Test the removeDuplicates function
         String input = "aabbccddeeff";
         String result = removeDuplicates(input);
         System.out.println("Original String: " + input);
         System.out.println("String after removing duplicates: " + result);
 
-
-
-
-        // Input string
+        //g Input string
         String input1 = "bananaa";
 
-        // Create a StringBuilder for the new string (no duplicates)
+        // Create a StringBuilder for the new string (no duplicates) , we are using StringBuilder to build the result string for efficiency and performance reasons
         StringBuilder result1 = new StringBuilder("");
 
         // Create a boolean map of size 26 for lowercase alphabets
@@ -23,19 +20,21 @@ public class RemoveDuplicate {
         removeDuplicates(input1, 0, result1, map);
 
 
+        // last check if a string contains a substring
+        checkStringContains();
 
     }
-        //P Answer by ChatGPT
+        //g Answer by ChatGPT
     public static String removeDuplicates(String str) {
         // base case
         if (str.length() <= 1) {
             return str;
         }
-        
+    
         // recursive case
         char firstChar = str.charAt(0);
         String remainingString = removeDuplicates(str.substring(1));
-        
+
         // check if the first character is already in the remaining string
         if (remainingString.indexOf(firstChar) != -1) {   //The character was found somewhere in the remaining string.
             return remainingString; // skip the first character
@@ -44,7 +43,7 @@ public class RemoveDuplicate {
         }
     }
 
-            //Appna college answer
+    //Appna college answer
     // Recursive method to remove duplicate characters from a string
     public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean[] map) {
 
@@ -69,4 +68,15 @@ public class RemoveDuplicate {
             removeDuplicates(str, idx + 1, newStr.append(currChar), map);
         }
     }
+
+
+    public static void checkStringContains() {
+    String x = "hello world";
+    if(x.contains("world")) {
+        System.out.println("String contains 'world'");
+    } else {
+        System.out.println("String does not contain 'world'");
+}
+    System.out.println("Index of 'w' in the string: " + x.indexOf("w"));
+}
 }
