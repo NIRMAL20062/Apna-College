@@ -1,17 +1,16 @@
-public class Tiling {
-    public static void main(String[] args) {
+public class Tiling{
+    public static void main(String[] args){
         // Example usage
         int n = 4; // Length of the floor
         System.out.println("Number of ways to tile a 2x" + n + " floor: " + countWays(n));
     }
-    public static int countWays(int n) {
-        if (n == 1 || n == 2) {
+    public static int countWays(int n){
+        if (n == 1 || n == 2){
             return n;
         }
         return countWays(n - 1) + countWays(n - 2);
-        }   
-}
-
+        }
+    }
 //W Working of the code:
 
 // The code takes an integer n as input and returns the number of ways to tile a 2xn floor.
