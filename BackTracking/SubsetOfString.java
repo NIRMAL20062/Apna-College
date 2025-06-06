@@ -25,3 +25,11 @@ public class SubsetOfString {
         findSubsets(str, ans, i + 1);
     }
 }
+
+
+// time complexity - n* 2^n
+
+// for each character in the string, we have two choices - include it or exclude it.
+// so for n characters, we have 2^n choices.
+// how n came 
+// we have n characters in the string
