@@ -9,7 +9,7 @@ public class N_Queens {
                 board[i][j] = '-';
             }
         }
-        nQueens(board, 0);    
+        nQueens(board, 0);
     }
 
     public static void nQueens(char board[][], int row) {

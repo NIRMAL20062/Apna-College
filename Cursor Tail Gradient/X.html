@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jellyfish Cursor Trail</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: rgb(101, 205, 153);
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    for (let i = 0; i < 5; i++) {
+      particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: Math.random() * 5 + 2,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+        velocityX: (Math.random() - 0.5) * 4,
+        velocityY: (Math.random() - 0.5) * 4,
+        life: 100
+      });
+    }
+  });
+
+  function animate() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, width, height);
+
+    particles.forEach((p, index) => {
+      p.x += p.velocityX;
+      p.y += p.velocityY;
+      p.life--;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+
+      if (p.life <= 0) {
+        particles.splice(index, 1);
+      }
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon Jellyfish Cursor Trail</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  let particles = [];
+  let mouse = { x: width / 2, y: height / 2 };
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  function createParticles() {
+    for (let i = 0; i < 4; i++) {
+      particles.push({
+        x: mouse.x,
+        y: mouse.y,
+        radius: Math.random() * 4 + 1,
+        color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+        velocityX: (Math.random() - 0.5) * 8,
+        velocityY: (Math.random() - 0.5) * 8,
+        alpha: 1,
+        decay: Math.random() * 0.01 + 0.005
+      });
+    }
+  }
+
+  function animate() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, width, height);
+
+    createParticles();
+
+    particles.forEach((p, index) => {
+      p.x += p.velocityX;
+      p.y += p.velocityY;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        particles.splice(index, 1);
+        return;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 20;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  function hexToRgb(h) {
+    const tmp = document.createElement("div");
+    tmp.style.color = h;
+    document.body.appendChild(tmp);
+    const rgb = window.getComputedStyle(tmp).color.match(/\d+/g);
+    document.body.removeChild(tmp);
+    return rgb.join(",");
+  }
+
+  animate();
+</script>
+</body>
+</html>
