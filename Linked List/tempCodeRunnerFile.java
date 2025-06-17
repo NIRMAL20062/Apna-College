@@ -232,7 +232,7 @@ public class LinkedList {
         } else {
             System.out.println("Invalid position!");
         }
-    }
+
 
 
     // Main method to test the LinkedList
