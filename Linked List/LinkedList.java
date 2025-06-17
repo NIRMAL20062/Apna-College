@@ -173,6 +173,36 @@ public class LinkedList {
         head = prev;  // Update head to new first node
     }
 
+    // find and delete the nth node from the end
+    public void deleteNthFromEnd(int n) {
+        if (head == null || n <= 0) return;  // Empty list or invalid n
+
+        Node fast = head;
+        Node slow = head;
+
+        // Move fast pointer n steps ahead
+        for (int i = 0; i < n; i++) {
+            if (fast == null) return;  // n is larger than the size of the list
+            fast = fast.next;
+        }
+
+        // If fast is null, we need to delete the head
+        if (fast == null) {
+            head = head.next;
+            return;
+        }
+
+        // Move both pointers until fast reaches the end
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // Now slow is at the node before the one we want to delete
+        slow.next = slow.next.next;  // Bypass the nth node from end
+    }
+
+
     // Main method to test the LinkedList
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
