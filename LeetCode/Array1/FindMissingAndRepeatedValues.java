@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-class LL {
+class FindMissingAndRepeatedValue {
     public static int[] findMissingAndRepeatedValues(int[][] grid) {
         int n = grid.length;
         int totalElements = n * n;

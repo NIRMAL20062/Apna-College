@@ -234,6 +234,155 @@ public class LinkedList {
         }
     }
 
+    // 11. Find the middle node of the linked list
+    public int findMiddle() {
+    if (head == null) {
+        throw new RuntimeException("List is empty");
+    }
+
+    Node slow = head;
+    Node fast = head;
+
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow.data;  // slow is at the middle
+}
+
+//  12. Check if the linked list is a palindrome
+public boolean isPalindrome() {
+    if (head == null || head.next == null) return true;
+
+    Node slow = head;
+    Node fast = head;
+
+    // Step 1: Find middle
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // Step 2: Reverse second half
+    Node secondHalf = reverseList(slow);
+
+    // Step 3: Compare both halves
+    Node firstHalf = head;
+    Node temp = secondHalf;
+    while (temp != null) {
+        if (firstHalf.data != temp.data) {
+            return false;
+        }
+        firstHalf = firstHalf.next;
+        temp = temp.next;
+    }
+
+    return true;
+}
+
+// Helper to reverse a list from given node
+private Node reverseList(Node node) {
+    Node prev = null, current = node;
+    while (current != null) {
+        Node next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
+// Apna College
+// alternate method to check if the linked list is a palindrome
+public boolean isPalindrome2() {
+    if (head == null || head.next == null) return true;
+    Node slow = head;
+    Node fast = head;
+    // Step 1: Find the middle of the list
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    // Step 2: Reverse the second half of the list
+    Node prev = null;
+    Node current = slow;
+    while (current != null) {
+        Node next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+    // Step 3: Compare the first and second halves of the list
+    current = head;
+    prev = prev.next;  // Skip the middle node
+    while (prev != null) {
+        if (current.data != prev.data) {
+            return false;
+        }
+        current = current.next;
+        prev = prev.next;
+    }
+    return true;
+}
+    // 13. Merge two sorted linked lists
+public LinkedList mergeSortedLists(LinkedList list1, LinkedList list2) {
+    if (list1 == null) return list2;
+    if (list2 == null) return list1;
+    LinkedList mergedList = new LinkedList();
+    Node current1 = list1.head;
+
+    Node current2 = list2.head;
+
+    while (current1 != null && current2 != null) {
+        if (current1.data < current2.data) {
+            mergedList.insertAtEnd(current1.data);
+            current1 = current1.next;
+        } else {
+            mergedList.insertAtEnd(current2.data);
+            current2 = current2.next;
+        }
+        }
+    // Add remaining nodes from either list
+    while (current1 != null) {
+        mergedList.insertAtEnd(current1.data);
+        current1 = current1.next;
+    }
+    while (current2 != null) {
+        mergedList.insertAtEnd(current2.data);
+        current2 = current2.next;
+    }
+
+    return mergedList;
+}
+// 14. Remove duplicates from a sorted linked list
+public void removeDuplicates() {
+    if (head == null) return;  // Empty list
+    Node current = head;
+    while (current != null && current.next != null) {
+        if (current.data == current.next.data) {
+            // Bypass the duplicate node
+            current.next = current.next.next;
+        } else {
+            // Move to next node
+            current = current.next;
+        }
+    }
+}
+// 15. Detect a cycle in the linked list using Floyd's Cycle Detection Algorithm
+public boolean hasCycle() {
+    if (head == null) return false;  // Empty list
+    Node slow = head;
+    Node fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;          // Move slow pointer by 1
+        fast = fast.next.next;    // Move fast pointer by 2
+        if (slow == fast) {       // Cycle detected
+            return true;
+        }
+    }
+    return false;  // No cycle detected
+}
+
 
     // Main method to test the LinkedList
     public static void main(String[] args) {

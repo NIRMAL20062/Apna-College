@@ -1,7 +1,7 @@
 import java.util.HashSet;
 
-class LL {
-    public static int[] findMissingAndRepeatedValues(int[][] grid) {
+class MissingNumbersRepeatedValues {
+    public static int[] MissingAndRepeatedValues(int[][] grid) {
         int n = grid.length;
         int totalElements = n * n;
         int actualSum = 0;
@@ -30,7 +30,7 @@ class LL {
 			{4, 5, 6},
 			{7, 8, 8}
 		};
-		int[] result =findMissingAndRepeatedValues(grid);
+		int[] result = MissingAndRepeatedValues(grid);
 		System.out.println("Repeated: " + result[0] + ", Missing: " + result[1]);
 	}
 
