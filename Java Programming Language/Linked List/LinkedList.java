@@ -423,5 +423,55 @@ public boolean hasCycle() {
         list.display();  // Output: 30 -> 5 -> null
         list.deleteNthFromEnd2(1);
         list.display();  // Output: 30 -> null
+
+
+        // Find middle
+        System.out.println("Middle: " + list.findMiddle());  // 30
+        // Check palindrome
+        LinkedList list2 = new LinkedList();
+        list2.insertAtEnd(1);
+        list2.insertAtEnd(2);
+        list2.insertAtEnd(3);
+        list2.insertAtEnd(6);
+        list2.insertAtEnd(1);
+        System.out.println("Is palindrome: " + list2.isPalindrome());  // true
+        System.out.println("Is palindrome: " + list2.isPalindromex());  // true
+
+        // Merge two sorted lists
+        LinkedList list3 = new LinkedList();
+        list3.insertAtEnd(1);
+
+        list3.insertAtEnd(3);
+        list3.insertAtEnd(5);
+        LinkedList list4 = new LinkedList();
+        list4.insertAtEnd(2);
+        list4.insertAtEnd(4);
+        list4.insertAtEnd(6);
+        LinkedList mergedList = list3.mergeSortedLists(list3, list4);
+        mergedList.display();  // Output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null
+
+        // Remove duplicates from sorted list
+        LinkedList sortedList = new LinkedList();   
+        sortedList.insertAtEnd(1);
+        sortedList.insertAtEnd(1);
+        sortedList.insertAtEnd(2);
+        sortedList.insertAtEnd(3);
+        sortedList.insertAtEnd(3);
+        sortedList.insertAtEnd(4);
+        sortedList.removeDuplicates();
+        sortedList.display();  // Output: 1 -> 2 -> 3 -> 4 -> null
+
+        // Detect cycle
+        LinkedList cycleList = new LinkedList();
+        cycleList.insertAtEnd(1);
+        cycleList.insertAtEnd(2);   
+        cycleList.insertAtEnd(3);
+        cycleList.insertAtEnd(4);
+        cycleList.insertAtEnd(5);
+        cycleList.head.next = cycleList.head;  // Create a cycle
+        System.out.println("Has cycle: " + cycleList.hasCycle());  // true
+        cycleList.head.next = cycleList.head.next.next;  // Remove cycle
+        System.out.println("Has cycle: " + cycleList.hasCycle());  // false
+
     }
 }
