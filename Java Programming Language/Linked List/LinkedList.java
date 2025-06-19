@@ -255,6 +255,52 @@ public class LinkedList {
 public boolean isPalindrome() {
     if (head == null || head.next == null) return true;
 
+    Node slow = head, fast = head;
+
+    // Step 1: Find middle
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // Step 2: Reverse second half
+    Node secondHalfStart = reverseList(slow);
+
+    // Step 3: Compare both halves
+    Node firstHalf = head;
+    Node secondHalfCopy = secondHalfStart;
+    boolean isPalin = true;
+    while (secondHalfCopy != null) {
+        if (firstHalf.data != secondHalfCopy.data) {
+            isPalin = false;
+            break;
+        }
+        firstHalf = firstHalf.next;
+        secondHalfCopy = secondHalfCopy.next;
+    }
+
+    // Step 4: Restore the list
+    reverseList(secondHalfStart);
+
+    return isPalin;
+}
+// Helper method to reverse a linked list
+private Node reverseList(Node head) {
+    Node prev = null;
+    Node current = head;
+    while (current != null) {
+        Node next = current.next;  // Save next node
+        current.next = prev;       // Reverse the link
+        prev = current;            // Move prev forward
+        current = next;            // Move current forward
+    }
+    return prev;  // New head of the reversed list
+}
+// Apna College
+// alternate method to check if the linked list is a palindrome
+public boolean isPalindromex() {
+    if (head == null || head.next == null) return true;
+
     Node slow = head;
     Node fast = head;
 
@@ -268,8 +314,8 @@ public boolean isPalindrome() {
     Node secondHalf = reverseList(slow);
 
     // Step 3: Compare both halves
-    Node firstHalf = head;
-    Node temp = secondHalf;
+    Node firstHalf = head;   // Start from head
+    Node temp = secondHalf;  // To store the original head of the second half
     while (temp != null) {
         if (firstHalf.data != temp.data) {
             return false;
@@ -281,49 +327,6 @@ public boolean isPalindrome() {
     return true;
 }
 
-// Helper to reverse a list from given node
-private Node reverseList(Node node) {
-    Node prev = null, current = node;
-    while (current != null) {
-        Node next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-    }
-    return prev;
-}
-// Apna College
-// alternate method to check if the linked list is a palindrome
-public boolean isPalindrome2() {
-    if (head == null || head.next == null) return true;
-    Node slow = head;
-    Node fast = head;
-    // Step 1: Find the middle of the list
-    while (fast != null && fast.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    // Step 2: Reverse the second half of the list
-    Node prev = null;
-    Node current = slow;
-    while (current != null) {
-        Node next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-    }
-    // Step 3: Compare the first and second halves of the list
-    current = head;
-    prev = prev.next;  // Skip the middle node
-    while (prev != null) {
-        if (current.data != prev.data) {
-            return false;
-        }
-        current = current.next;
-        prev = prev.next;
-    }
-    return true;
-}
     // 13. Merge two sorted linked lists
 public LinkedList mergeSortedLists(LinkedList list1, LinkedList list2) {
     if (list1 == null) return list2;
