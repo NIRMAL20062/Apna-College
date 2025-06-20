@@ -385,6 +385,52 @@ public boolean hasCycle() {
     }
     return false;  // No cycle detected
 }
+// 16. Find the start of the cycle in the linked list using Floyd's Cycle Detection Algorithm
+public Node findCycleStart() {
+    if (head == null) return null;  // Empty list
+    Node slow = head;
+    Node fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;          // Move slow pointer by 1
+        fast = fast.next.next;    // Move fast pointer by 2
+        if (slow == fast) {       // Cycle detected
+            // Move both pointers to the head
+            while (head != slow) {
+                head = head.next;
+                slow = slow.next;
+            }
+            return head;
+        }
+    }
+    return null;  // No cycle detected
+    }
+
+    //17. Remove cycle from a linked list 
+public void removeCycle() {
+    if (head == null) return;  // Empty list
+    Node slow = head;
+    Node fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;          // Move slow pointer by 1
+        fast = fast.next.next;    // Move fast pointer by 2
+        if (slow == fast) {       // Cycle detected
+            // Find the start of the cycle
+            Node cycleStart = head;
+            while (cycleStart != slow) {
+                cycleStart = cycleStart.next;
+                slow = slow.next;
+            }
+            // Find the node before the start of the cycle
+            Node current = cycleStart;
+            while (current.next != slow) {
+                current = current.next;
+            }
+            current.next = null;  // Break the cycle
+            return;
+        }
+    }
+}
+
 
 
     // Main method to test the LinkedList
