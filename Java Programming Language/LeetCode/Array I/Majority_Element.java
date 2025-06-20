@@ -14,7 +14,7 @@ public class Majority_Element {
                 count += (num == candidate) ? 1 : -1;
                 }
                 return candidate;
-                }
+    }
 }
 
 

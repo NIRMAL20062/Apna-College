@@ -408,27 +408,39 @@ public Node findCycleStart() {
     //17. Remove cycle from a linked list 
 public void removeCycle() {
     if (head == null) return;  // Empty list
+
+    // Detect cycle using Floyd's Cycle Detection Algorithm
     Node slow = head;
     Node fast = head;
+    boolean hasCycle = false;
     while (fast != null && fast.next != null) {
         slow = slow.next;          // Move slow pointer by 1
-        fast = fast.next.next;    // Move fast pointer by 2
+        if (slow == fast) {       // Cycle detected
+            hasCycle = true;
+            break;
+        }
+        fast = fast.next.next;    // Move fast pointer by 2 
         if (slow == fast) {       // Cycle detected
             // Find the start of the cycle
-            Node cycleStart = head;
-            while (cycleStart != slow) {
-                cycleStart = cycleStart.next;
-                slow = slow.next;
-            }
-            // Find the node before the start of the cycle
-            Node current = cycleStart;
-            while (current.next != slow) {
-                current = current.next;
-            }
-            current.next = null;  // Break the cycle
-            return;
+            hasCycle = true;
         }
+    }   
+    // If no cycle detected, return
+    if (!hasCycle) {
+        return;  // No cycle to remove
     }
+
+    // Find the start of the cycle  
+    slow = head;
+    Node prev = null;
+    while (slow != fast) {
+        prev = fast;  // Keep track of the previous node
+        slow = slow.next;          // Move slow pointer by 1
+        fast = fast.next;         // Move fast pointer by 1
+    }
+    // Now 'slow' is at the start of the cycle
+    // To remove the cycle, set the next of the last node in the cycle to null      
+    prev.next = null;  // Bypass the cycle
 }
 
 
@@ -518,6 +530,32 @@ public void removeCycle() {
         System.out.println("Has cycle: " + cycleList.hasCycle());  // true
         cycleList.head.next = cycleList.head.next.next;  // Remove cycle
         System.out.println("Has cycle: " + cycleList.hasCycle());  // false
+
+        // Find start of cycle
+        LinkedList cycleList2 = new LinkedList();
+
+        cycleList2.insertAtEnd(1);
+        cycleList2.insertAtEnd(2);
+        cycleList2.insertAtEnd(3);
+        cycleList2.insertAtEnd(4);
+        cycleList2.insertAtEnd(5);
+        cycleList2.head.next = cycleList2.head.next.next;  // Create a cycle
+        System.out.println("Cycle start: " + cycleList2.findCycleStart().data);  // 3
+
+
+        // Remove cycle
+        LinkedList cycleList3 = new LinkedList();
+        cycleList3.insertAtEnd(1);
+        cycleList3.insertAtEnd(2);
+        cycleList3.insertAtEnd(3);
+        cycleList3.insertAtEnd(4);
+        cycleList3.insertAtEnd(5);
+        cycleList3.head.next = cycleList3.head.next.next;  // Create a cycle
+        System.out.println("Before removing cycle: ");
+        cycleList3.display();  // Output: 1 -> 2 -> 3 -> 4 -> 5 -> (cycle)
+        cycleList3.removeCycle();
+        System.out.println("After removing cycle: ");
+        cycleList3.display();  // Output: 1 -> 2 -> 4 -> 5 -> null
 
     }
 }
