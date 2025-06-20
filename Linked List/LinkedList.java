@@ -327,36 +327,53 @@ public boolean isPalindromex() {
     return true;
 }
 
-    // 13. Merge two sorted linked lists
-public LinkedList mergeSortedLists(LinkedList list1, LinkedList list2) {
-    if (list1 == null) return list2;
-    if (list2 == null) return list1;
-    LinkedList mergedList = new LinkedList();
-    Node current1 = list1.head;
-
-    Node current2 = list2.head;
-
-    while (current1 != null && current2 != null) {
-        if (current1.data < current2.data) {
-            mergedList.insertAtEnd(current1.data);
-            current1 = current1.next;
-        } else {
-            mergedList.insertAtEnd(current2.data);
-            current2 = current2.next;
+// 13. Merge two sorted linked lists
+    public static LinkedList mergeSortedLists(LinkedList list1, LinkedList list2) {
+        LinkedList mergedList = new LinkedList();
+        Node current1 = list1.head;
+        Node current2 = list2.head;
+        Node tail = null; // To keep track of the last node in mergedList
+    
+        while (current1 != null && current2 != null) {
+            if (current1.data < current2.data) {
+                if (mergedList.head == null) {
+                    mergedList.head = current1;
+                    tail = current1;
+                } else {
+                    tail.next = current1;
+                    tail = tail.next;
+                }
+                current1 = current1.next;
+            } else {
+                if (mergedList.head == null) {
+                    mergedList.head = current2;
+                    tail = current2;
+                } else {
+                    tail.next = current2;
+                    tail = tail.next;
+                }
+                current2 = current2.next;
+            }
         }
+    
+        // Attach remaining elements
+        if (current1 != null) {
+            if (mergedList.head == null) {
+                mergedList.head = current1;
+            } else {
+                tail.next = current1;
+            }
+        } else if (current2 != null) {
+            if (mergedList.head == null) {
+                mergedList.head = current2;
+            } else {
+                tail.next = current2;
+            }
         }
-    // Add remaining nodes from either list
-    while (current1 != null) {
-        mergedList.insertAtEnd(current1.data);
-        current1 = current1.next;
-    }
-    while (current2 != null) {
-        mergedList.insertAtEnd(current2.data);
-        current2 = current2.next;
+    
+        return mergedList;
     }
 
-    return mergedList;
-}
 // 14. Remove duplicates from a sorted linked list
 public void removeDuplicates() {
     if (head == null) return;  // Empty list
@@ -406,42 +423,56 @@ public Node findCycleStart() {
     }
 
     //17. Remove cycle from a linked list 
-public void removeCycle() {
-    if (head == null) return;  // Empty list
 
-    // Detect cycle using Floyd's Cycle Detection Algorithm
-    Node slow = head;
-    Node fast = head;
-    boolean hasCycle = false;
-    while (fast != null && fast.next != null) {
-        slow = slow.next;          // Move slow pointer by 1
-        if (slow == fast) {       // Cycle detected
-            hasCycle = true;
-            break;
+    public void removeCycle() {
+        if (head == null || head.next == null) {
+            return; // No cycle possible with 0 or 1 node
         }
-        fast = fast.next.next;    // Move fast pointer by 2 
-        if (slow == fast) {       // Cycle detected
-            // Find the start of the cycle
-            hasCycle = true;
+    
+        // Step 1: Detect cycle using Floyd's algorithm
+        Node slow = head;
+        Node fast = head;
+        boolean hasCycle = false;
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            
+            if (slow == fast) {
+                hasCycle = true;
+                break;
+            }
         }
-    }   
-    // If no cycle detected, return
-    if (!hasCycle) {
-        return;  // No cycle to remove
+        
+        if (!hasCycle) {
+            return; // No cycle found
+        }
+    
+        // Step 2: Find the start of the cycle
+        slow = head;
+        Node prev = null; // To keep track of the node before the meeting point
+        
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        // Now slow and fast both point to the cycle start node
+    
+        // Step 3: Remove the cycle
+        if (prev != null) {
+            prev.next = null; // Break the cycle
+        } else {
+            // Special case: The entire list is a cycle (head is the meeting point)
+            // We need to find the node before head in the cycle
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
     }
 
-    // Find the start of the cycle  
-    slow = head;
-    Node prev = null;
-    while (slow != fast) {
-        prev = fast;  // Keep track of the previous node
-        slow = slow.next;          // Move slow pointer by 1
-        fast = fast.next;         // Move fast pointer by 1
-    }
-    // Now 'slow' is at the start of the cycle
-    // To remove the cycle, set the next of the last node in the cycle to null      
-    prev.next = null;  // Bypass the cycle
-}
 
 
 
