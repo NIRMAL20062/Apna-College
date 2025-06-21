@@ -483,53 +483,81 @@ public Node findCycleStart() {
 
 
 
-    // 18. Merge two sorted linked lists
-    public static LinkedList mergeTwoSortedLists(LinkedList list1, LinkedList list2) {
-        LinkedList mergedList = new LinkedList();
-        Node current1 = list1.head;
-        Node current2 = list2.head;
-        Node tail = null; // To keep track of the last node in mergedList
+    // 18. Merge sort on linked lists
+public LinkedList mergeSort() {
+    if (head == null || head.next == null) {
+        return this; // Base case: list is empty or has one node
+    }   
+    // Step 1: Split the list into two halves
+    Node middle = getMiddle(head);
+    Node nextToMiddle = middle.next;
+    middle.next = null; // Split the list into two halves
+    LinkedList leftList = new LinkedList();
+    leftList.head = head; // Left half starts from head
 
-        while (current1 != null && current2 != null) {
-            if (current1.data < current2.data) {
-                if (mergedList.head == null) {
-                    mergedList.head = current1;
-                    tail = current1;
-                } else {
-                    tail.next = current1;
-                    tail = tail.next;
-                }
-                current1 = current1.next;
-            } else {
-                if (mergedList.head == null) {
-                    mergedList.head = current2;
-                    tail = current2;
-                } else {
-                    tail.next = current2;
-                    tail = tail.next;
-                }
-                current2 = current2.next;
-            }
-        }
-
-        // Attach remaining elements
-        if (current1 != null) {
-            if (mergedList.head == null) {
-                mergedList.head = current1;
-            } else {
-                tail.next = current1;
-            }
-        } else if (current2 != null) {
-            if (mergedList.head == null) {
-                mergedList.head = current2;
-            } else {
-                tail.next = current2;
-            }
-        }
-
-        return mergedList;
+    LinkedList rightList = new LinkedList();
+    rightList.head = nextToMiddle; // Right half starts from next to middle
+    // Step 2: Recursively sort both halves
+    leftList = leftList.mergeSort();
+    rightList = rightList.mergeSort();
+    // Step 3: Merge the sorted halves
+    return merge(leftList, rightList);
+}
+// Helper method to get the middle node of the linked list
+private Node getMiddle(Node head) {
+    if (head == null) return null;
+    Node slow = head;
+    Node fast = head;
+    while (fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
-
+    return slow; // Slow will be at the middle
+}
+// Helper method to merge two sorted linked lists
+private LinkedList merge(LinkedList left, LinkedList right) {
+    LinkedList mergedList = new LinkedList();
+    Node leftCurrent = left.head;
+    Node rightCurrent = right.head;
+    Node tail = null; // To keep track of the last node in mergedList
+    while (leftCurrent != null && rightCurrent != null) {
+        if (leftCurrent.data < rightCurrent.data) {
+            if (mergedList.head == null) {
+                mergedList.head = leftCurrent;
+                tail = leftCurrent;
+            } else {
+                tail.next = leftCurrent;
+                tail = tail.next;
+            }
+            leftCurrent = leftCurrent.next;
+        } else {
+            if (mergedList.head == null) {
+                mergedList.head = rightCurrent;
+                tail = rightCurrent;
+            } else {
+                tail.next = rightCurrent;
+                tail = tail.next;
+            }
+            rightCurrent = rightCurrent.next;
+        }
+    }
+    // Attach remaining elements
+    if (leftCurrent != null) {
+        if (mergedList.head == null) {
+            mergedList.head = leftCurrent;
+        } else {
+            tail.next = leftCurrent;
+        }
+    } else if (rightCurrent != null) {
+        if (mergedList.head == null) {
+            mergedList.head = rightCurrent;
+        } else {
+            tail.next = rightCurrent;
+        }
+    }
+    return mergedList; // Return the merged sorted list
+}
+    
     // Main method to test the LinkedList
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
