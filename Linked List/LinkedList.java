@@ -423,58 +423,112 @@ public Node findCycleStart() {
     }
 
     //17. Remove cycle from a linked list 
-
-    public void removeCycle() {
+    public boolean removeCycle() {
         if (head == null || head.next == null) {
-            return; // No cycle possible with 0 or 1 node
+            return false; // No cycle
         }
-    
-        // Step 1: Detect cycle using Floyd's algorithm
+
         Node slow = head;
         Node fast = head;
         boolean hasCycle = false;
-        
+
+        // Step 1: Detect cycle
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            
+
             if (slow == fast) {
                 hasCycle = true;
                 break;
             }
         }
-        
+
         if (!hasCycle) {
-            return; // No cycle found
+            return false; // No cycle found
         }
-    
-        // Step 2: Find the start of the cycle
+
+        // Optional: Calculate length of the cycle
+        int length = 1;
+        Node tempx = slow.next;
+        while (tempx != slow) {
+            length++;
+            tempx = tempx.next;
+        }
+        System.out.println("Cycle length: " + length);
+
+        // Step 2: Find start of the cycle
         slow = head;
-        Node prev = null; // To keep track of the node before the meeting point
-        
+        Node prev = null;
+
         while (slow != fast) {
             prev = fast;
             slow = slow.next;
             fast = fast.next;
         }
-        // Now slow and fast both point to the cycle start node
-    
+
         // Step 3: Remove the cycle
-        if (prev != null) {
-            prev.next = null; // Break the cycle
-        } else {
-            // Special case: The entire list is a cycle (head is the meeting point)
-            // We need to find the node before head in the cycle
+        if (slow == head) {
+            // Special case: cycle starts at head
             Node temp = head;
             while (temp.next != head) {
                 temp = temp.next;
             }
             temp.next = null;
+        } else {
+            prev.next = null;
         }
+
+        return true; // Cycle was removed
     }
 
 
 
+    // 18. Merge two sorted linked lists
+    public static LinkedList mergeTwoSortedLists(LinkedList list1, LinkedList list2) {
+        LinkedList mergedList = new LinkedList();
+        Node current1 = list1.head;
+        Node current2 = list2.head;
+        Node tail = null; // To keep track of the last node in mergedList
+
+        while (current1 != null && current2 != null) {
+            if (current1.data < current2.data) {
+                if (mergedList.head == null) {
+                    mergedList.head = current1;
+                    tail = current1;
+                } else {
+                    tail.next = current1;
+                    tail = tail.next;
+                }
+                current1 = current1.next;
+            } else {
+                if (mergedList.head == null) {
+                    mergedList.head = current2;
+                    tail = current2;
+                } else {
+                    tail.next = current2;
+                    tail = tail.next;
+                }
+                current2 = current2.next;
+            }
+        }
+
+        // Attach remaining elements
+        if (current1 != null) {
+            if (mergedList.head == null) {
+                mergedList.head = current1;
+            } else {
+                tail.next = current1;
+            }
+        } else if (current2 != null) {
+            if (mergedList.head == null) {
+                mergedList.head = current2;
+            } else {
+                tail.next = current2;
+            }
+        }
+
+        return mergedList;
+    }
 
     // Main method to test the LinkedList
     public static void main(String[] args) {
@@ -536,7 +590,7 @@ public Node findCycleStart() {
         list4.insertAtEnd(2);
         list4.insertAtEnd(4);
         list4.insertAtEnd(6);
-        LinkedList mergedList = list3.mergeSortedLists(list3, list4);
+        LinkedList mergedList = LinkedList.mergeSortedLists(list3, list4);
         mergedList.display();  // Output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null
 
         // Remove duplicates from sorted list
@@ -570,8 +624,21 @@ public Node findCycleStart() {
         cycleList2.insertAtEnd(3);
         cycleList2.insertAtEnd(4);
         cycleList2.insertAtEnd(5);
-        cycleList2.head.next = cycleList2.head.next.next;  // Create a cycle
-        System.out.println("Cycle start: " + cycleList2.findCycleStart().data);  // 3
+
+        // Create a cycle by connecting last node to the 3rd node (value = 3)
+        LinkedList.Node thirdNode = cycleList2.head.next.next; // 3rd node
+        LinkedList.Node temp = cycleList2.head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = thirdNode; // last node's next points to 3rd node to form a cycle
+
+        LinkedList.Node cycleStart = cycleList2.findCycleStart();
+        if (cycleStart != null) {
+            System.out.println("Cycle start: " + cycleStart.data);  // Output: 3
+        } else {
+            System.out.println("No cycle found!");
+        }
 
 
         // Remove cycle
@@ -579,14 +646,30 @@ public Node findCycleStart() {
         cycleList3.insertAtEnd(1);
         cycleList3.insertAtEnd(2);
         cycleList3.insertAtEnd(3);
+
         cycleList3.insertAtEnd(4);
         cycleList3.insertAtEnd(5);
-        cycleList3.head.next = cycleList3.head.next.next;  // Create a cycle
-        System.out.println("Before removing cycle: ");
-        cycleList3.display();  // Output: 1 -> 2 -> 3 -> 4 -> 5 -> (cycle)
-        cycleList3.removeCycle();
-        System.out.println("After removing cycle: ");
-        cycleList3.display();  // Output: 1 -> 2 -> 4 -> 5 -> null
-
+        // Create a cycle by connecting last node to the 2nd node (value = 2)
+        LinkedList.Node secondNode = cycleList3.head.next; // 2nd node
+        LinkedList.Node lastNode = cycleList3.head;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+        lastNode.next = secondNode; // last node's next points to 2nd node to form a cycle
+        boolean cycleRemoved = cycleList3.removeCycle();
+        if (cycleRemoved) {
+            System.out.println("Cycle removed successfully!");
+        } else {
+            System.out.println("No cycle found to remove.");
+        }
+        // Display the list after removing cycle
+        cycleList3.display();  // Output: 1 -> 2 -> 3 -> 4 -> 5 -> null
+        // Check if the list is empty after removing cycle
+        if (cycleList3.head == null) {
+            System.out.println("The list is empty after removing the cycle.");
+        } else {
+            System.out.println("The list is not empty after removing the cycle.");
+        }
+        
     }
 }

@@ -1,0 +1,70 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Attach",
+			"request": "attach",
+			"hostName": "localhost",
+			"port": "<debug port of the debuggee>"
+		},
+		{
+			"type": "java",
+			"name": "Current File",
+			"request": "launch",
+			"mainClass": "${file}"
+		},
+		{
+			"type": "java",
+			"name": "FindMissingAndRepeatedValue",
+			"request": "launch",
+			"mainClass": "FindMissingAndRepeatedValue",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "Hollow_Rectangle",
+			"request": "launch",
+			"mainClass": "Hollow_Rectangle",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "Inverted_n_Rotated_Half_Pyramid",
+			"request": "launch",
+			"mainClass": "Inverted_n_Rotated_Half_Pyramid",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "LL",
+			"request": "launch",
+			"mainClass": "LL",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "LinkedList",
+			"request": "launch",
+			"mainClass": "LinkedList",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "MissingNumbersRepeatedValues",
+			"request": "launch",
+			"mainClass": "MissingNumbersRepeatedValues",
+			"projectName": "Apna-College_35d37cf0"
+		},
+		{
+			"type": "java",
+			"name": "Power",
+			"request": "launch",
+			"mainClass": "Power",
+			"projectName": "Apna-College_35d37cf0"
+		}
+	]
+}
