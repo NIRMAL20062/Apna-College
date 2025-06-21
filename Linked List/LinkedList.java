@@ -479,90 +479,88 @@ public Node findCycleStart() {
         }
 
         return true; // Cycle was removed
-    }
-
-
+        }
 
     // 18. Merge sort on linked lists
-public LinkedList mergeSort() {
-    if (head == null || head.next == null) {
-        return this; // Base case: list is empty or has one node
-    }   
-    // Step 1: Split the list into two halves
-    Node middle = getMiddle(head);
-    Node nextToMiddle = middle.next;
-    middle.next = null; // Split the list into two halves
-    LinkedList leftList = new LinkedList();
-    leftList.head = head; // Left half starts from head
+    public LinkedList mergeSort() {
+        if (head == null || head.next == null) {
+            return this; // Base case: list is empty or has one node
+        }   
+        // Step 1: Split the list into two halves
+        Node middle = getMiddle(head);
+        Node nextToMiddle = middle.next;
+        middle.next = null; // Split the list into two halves
+        LinkedList leftList = new LinkedList();
+        leftList.head = head; // Left half starts from head
 
-    LinkedList rightList = new LinkedList();
-    rightList.head = nextToMiddle; // Right half starts from next to middle
-    // Step 2: Recursively sort both halves
-    leftList = leftList.mergeSort();
-    rightList = rightList.mergeSort();
-    // Step 3: Merge the sorted halves
-    return merge(leftList, rightList);
-}
-// Helper method to get the middle node of the linked list
-private Node getMiddle(Node head) {
-    if (head == null) return null;
-    Node slow = head;
-    Node fast = head;
-    while (fast.next != null && fast.next.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
+        LinkedList rightList = new LinkedList();
+        rightList.head = nextToMiddle; // Right half starts from next to middle
+        // Step 2: Recursively sort both halves
+        leftList = leftList.mergeSort();
+        rightList = rightList.mergeSort();
+        // Step 3: Merge the sorted halves
+        return merge(leftList, rightList);
     }
-    return slow; // Slow will be at the middle
-}
-// Helper method to merge two sorted linked lists
-private LinkedList merge(LinkedList left, LinkedList right) {
-    LinkedList mergedList = new LinkedList();
-    Node leftCurrent = left.head;
-    Node rightCurrent = right.head;
-    Node tail = null; // To keep track of the last node in mergedList
-    while (leftCurrent != null && rightCurrent != null) {
-        if (leftCurrent.data < rightCurrent.data) {
+    // Helper method to get the middle node of the linked list
+    private Node getMiddle(Node head) {
+        if (head == null) return null;
+        Node slow = head;
+        Node fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow; // Slow will be at the middle
+    }
+    // Helper method to merge two sorted linked lists
+    private LinkedList merge(LinkedList left, LinkedList right) {
+        LinkedList mergedList = new LinkedList();
+        Node leftCurrent = left.head;
+        Node rightCurrent = right.head;
+        Node tail = null; // To keep track of the last node in mergedList
+        while (leftCurrent != null && rightCurrent != null) {
+            if (leftCurrent.data < rightCurrent.data) {
+                if (mergedList.head == null) {
+                    mergedList.head = leftCurrent;
+                    tail = leftCurrent;
+                } else {
+                    tail.next = leftCurrent;
+                    tail = tail.next;
+                }
+                leftCurrent = leftCurrent.next;
+            } else {
+                if (mergedList.head == null) {
+                    mergedList.head = rightCurrent;
+                    tail = rightCurrent;
+                } else {
+                    tail.next = rightCurrent;
+                    tail = tail.next;
+                }
+                rightCurrent = rightCurrent.next;
+            }
+        }
+        // Attach remaining elements
+        if (leftCurrent != null) {
             if (mergedList.head == null) {
                 mergedList.head = leftCurrent;
-                tail = leftCurrent;
             } else {
                 tail.next = leftCurrent;
-                tail = tail.next;
             }
-            leftCurrent = leftCurrent.next;
-        } else {
+        } else if (rightCurrent != null) {
             if (mergedList.head == null) {
                 mergedList.head = rightCurrent;
-                tail = rightCurrent;
             } else {
                 tail.next = rightCurrent;
-                tail = tail.next;
             }
-            rightCurrent = rightCurrent.next;
         }
-    }
-    // Attach remaining elements
-    if (leftCurrent != null) {
-        if (mergedList.head == null) {
-            mergedList.head = leftCurrent;
-        } else {
-            tail.next = leftCurrent;
+        return mergedList; // Return the merged sorted list
         }
-    } else if (rightCurrent != null) {
-        if (mergedList.head == null) {
-            mergedList.head = rightCurrent;
-        } else {
-            tail.next = rightCurrent;
-        }
-    }
-    return mergedList; // Return the merged sorted list
-}
     
     // Main method to test the LinkedList
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
 
-        // Insertions
+        // Insertions   
         list.insertAtEnd(10);
         list.insertAtEnd(20);
         list.insertAtEnd(30);
@@ -697,6 +695,25 @@ private LinkedList merge(LinkedList left, LinkedList right) {
             System.out.println("The list is empty after removing the cycle.");
         } else {
             System.out.println("The list is not empty after removing the cycle.");
+        }
+        
+
+        // Merge sort
+        LinkedList unsortedList = new LinkedList();
+        unsortedList.insertAtEnd(4);
+        unsortedList.insertAtEnd(2);    
+        unsortedList.insertAtEnd(1);
+        unsortedList.insertAtEnd(3);
+        System.out.println("Unsorted List:");
+        unsortedList.display();  // Output: 4 -> 2 -> 1 -> 3 -> null
+        LinkedList sortedList2 = unsortedList.mergeSort();
+        System.out.println("Sorted List:");
+        sortedList2.display();  // Output: 1 -> 2 -> 3 -> 4 -> null
+        // Check if the sorted list is empty
+        if (sortedList2.head == null) {
+            System.out.println("The sorted list is empty.");
+        } else {
+            System.out.println("The sorted list is not empty.");
         }
         
     }
