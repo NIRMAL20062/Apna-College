@@ -2,12 +2,14 @@ public class LinkedList {
 
     // Node class: Represents each element in the linked list.
     class Node {
-        int data;    // Stores the value
-        Node next;   // Points to the next node
+        int data;     // Stores the value
+        Node next;   // Points or reference to the next node  Why Node Type?:
+                     //  The next field is declared as Node because it needs to refer to another instance of the same Node class. This is a self-referential structure, where a class contains a field that refers to an object of its own type.
+                     // This self-reference is what makes it possible to chain multiple nodes together to form a linked list.
 
         // Constructor to initialize a node
-        Node(int data) {
-            this.data = data;
+        Node(int Data) {
+            this.data = Data;
             this.next = null;  // New nodes always point to null initially
         }
     }
@@ -482,9 +484,9 @@ public Node findCycleStart() {
         }
 
     // 18. Merge sort on linked lists
-    public LinkedList mergeSort() {
+    public Node mergeSort() {
         if (head == null || head.next == null) {
-            return this; // Base case: list is empty or has one node
+            return head; // Base case: list is empty or has one node and return this means - it returns the same list
         }   
         // Step 1: Split the list into two halves
         Node middle = getMiddle(head);
@@ -496,10 +498,11 @@ public Node findCycleStart() {
         LinkedList rightList = new LinkedList();
         rightList.head = nextToMiddle; // Right half starts from next to middle
         // Step 2: Recursively sort both halves
-        leftList = leftList.mergeSort();
-        rightList = rightList.mergeSort();
+        leftList.head = leftList.mergeSort();
+        rightList.head = rightList.mergeSort();
         // Step 3: Merge the sorted halves
-        return merge(leftList, rightList);
+        return merge(leftList.head, rightList.head);    
+
     }
     // Helper method to get the middle node of the linked list
     private Node getMiddle(Node head) {
@@ -513,48 +516,36 @@ public Node findCycleStart() {
         return slow; // Slow will be at the middle
     }
     // Helper method to merge two sorted linked lists
-    private LinkedList merge(LinkedList left, LinkedList right) {
-        LinkedList mergedList = new LinkedList();
-        Node leftCurrent = left.head;
-        Node rightCurrent = right.head;
-        Node tail = null; // To keep track of the last node in mergedList
-        while (leftCurrent != null && rightCurrent != null) {
-            if (leftCurrent.data < rightCurrent.data) {
-                if (mergedList.head == null) {
-                    mergedList.head = leftCurrent;
-                    tail = leftCurrent;
-                } else {
-                    tail.next = leftCurrent;
-                    tail = tail.next;
-                }
-                leftCurrent = leftCurrent.next;
+    private Node merge(Node head1, Node head2) {
+        Node DummyLL = new Node(-1); // Dummy node to simplify merging
+        Node temp = DummyLL; // Pointer to build the merged list
+        while (head1 != null && head2 != null) {
+            if (head1.data < head2.data) {
+                temp.next = head1; // Link smaller node
+                head1 = head1.next; // Move to next node in list 1
             } else {
-                if (mergedList.head == null) {
-                    mergedList.head = rightCurrent;
-                    tail = rightCurrent;
-                } else {
-                    tail.next = rightCurrent;
-                    tail = tail.next;
-                }
-                rightCurrent = rightCurrent.next;
+                temp.next = head2; // Link smaller node
+                head2 = head2.next; // Move to next node in list 2
             }
+            temp = temp.next; // Move temp pointer forward
+            
         }
-        // Attach remaining elements
-        if (leftCurrent != null) {
-            if (mergedList.head == null) {
-                mergedList.head = leftCurrent;
-            } else {
-                tail.next = leftCurrent;
-            }
-        } else if (rightCurrent != null) {
-            if (mergedList.head == null) {
-                mergedList.head = rightCurrent;
-            } else {
-                tail.next = rightCurrent;
-            }
+        // Attach remaining nodes from either list
+        while ( head1 != null) {
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+
+            
         }
-        return mergedList; // Return the merged sorted list
+        while (head2 != null) {
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
         }
+        return DummyLL.next; // Return the merged list starting from the first real node
+    }
+        
     
     // Main method to test the LinkedList
     public static void main(String[] args) {
@@ -698,23 +689,17 @@ public Node findCycleStart() {
         }
         
 
-        // Merge sort
-        LinkedList unsortedList = new LinkedList();
+        // Merge sort on linked list
+        LinkedList unsortedList = new LinkedList(); 
         unsortedList.insertAtEnd(4);
-        unsortedList.insertAtEnd(2);    
+        unsortedList.insertAtEnd(2);
         unsortedList.insertAtEnd(1);
         unsortedList.insertAtEnd(3);
         System.out.println("Unsorted List:");
         unsortedList.display();  // Output: 4 -> 2 -> 1 -> 3 -> null
-        LinkedList sortedList2 = unsortedList.mergeSort();
+        unsortedList.head = unsortedList.mergeSort();  // Sort the list
         System.out.println("Sorted List:");
-        sortedList2.display();  // Output: 1 -> 2 -> 3 -> 4 -> null
-        // Check if the sorted list is empty
-        if (sortedList2.head == null) {
-            System.out.println("The sorted list is empty.");
-        } else {
-            System.out.println("The sorted list is not empty.");
-        }
+        unsortedList.display();  // Output: 1 -> 2 -> 3 -> 4 -> null
         
     }
 }
