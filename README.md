@@ -1,7 +1,13 @@
-# **🔥 DSA with Java: My Blood, Sweat, and Infinite StackOverflow Tabs**  
+# **🔥 Apna College DSA with Java: My Blood, Sweat, and Infinite StackOverflow Tabs**  
 
-**Welcome to my chaotic journey of learning Data Structures & Algorithms in Java!**  
+**Welcome to my chaotic journey of learning Data Structures & Algorithms in Java following Apna College!**  
 *Spoiler: It’s 10% genius, 90% "Why is my linked list circular now?"*  
+## **📋 What This Repository Is For**
+- **DSA Learning**: Complete collection of Data Structures & Algorithms implementations in Java
+- **Java Programming**: From basics (variables, loops) to advanced concepts (OOP, collections)
+- **Practice Problems**: LeetCode solutions and programming assignments
+- **Study Reference**: Organized code examples covering arrays, linked lists, trees, sorting, searching, and more
+- **Apna College Course**: Following along with Apna College's comprehensive DSA curriculum
 
 ---
 
@@ -31,14 +37,14 @@
 ## **💻 How to Run My (Probably Buggy) Code**  
 1. Clone this repo (if you dare):  
    ```bash
-   git clone https://github.com/your-username/dsa-pain-java.git
+   git clone https://github.com/NIRMAL20062/Apna-College.git
    ```  
-2. Compile & run:  
+2. Compile & run (example with a basic Java file):  
    ```bash
-   javac WhyIsThisNotWorking.java
-   java WhyIsThisNotWorking
+   javac "Java Programming Language/Vaiables and Data-Types/JavaBasics.java"
+   java "Java Programming Language/Vaiables and Data-Types/JavaBasics"
    ```  
-   *(Output: `Exception in thread "main" java.lang.StackOverflowError`)*  
+   *(Or try any other .java file from the various topic folders)*  
 
 ---
 
